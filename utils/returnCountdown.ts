@@ -1,21 +1,23 @@
+export interface Countdown {
+  now: number;
+  expiry: number;
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number
+}
+
 export function returnCountdown(expiry: string | number | Date) {
-     if (expiry === undefined) throw new Error("Expiry cannot be undefined");
-  // This is added so it's easier to debug. A 0 is a valid return, a null is not
-  let countdown = {
-    now: null as null | number | Date,
-    expiry: null as null | number | Date,
-    days: null as null | number,
-    hours: null as null | number,
-    minutes: null as null | number,
-    seconds: null as null | number,
-  };
+  if (expiry === undefined) throw new Error("Expiry cannot be undefined");
+
+  let countdown: Countdown;
 
   const nowTime = new Date().getTime();
   const expireTime = new Date(expiry).getTime();
   let differenceInMilliseconds = Math.abs(expireTime - nowTime);
   let differenceInSeconds = Math.floor(differenceInMilliseconds / 1000);
-    const differenceInDays = Math.floor(differenceInSeconds / 86400);
-    
+  const differenceInDays = Math.floor(differenceInSeconds / 86400);
+
   // resetting here lets it be used for the other conversions without
   // insanely long and annoying arithmatic
   differenceInSeconds -= differenceInDays * 86400;
