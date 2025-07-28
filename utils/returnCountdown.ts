@@ -1,10 +1,11 @@
 export interface Countdown {
   now: number;
   expiry: number;
+  expired: boolean;
   days: number;
   hours: number;
   minutes: number;
-  seconds: number
+  seconds: number;
 }
 
 export function returnCountdown(expiry: string | number | Date) {
@@ -32,6 +33,7 @@ export function returnCountdown(expiry: string | number | Date) {
   countdown = {
     now: nowTime,
     expiry: expireTime,
+    expired: nowTime > expireTime,
     days: differenceInDays,
     hours: differenceInHours,
     minutes: differenceInMinutes,
