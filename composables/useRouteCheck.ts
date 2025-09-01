@@ -1,14 +1,9 @@
 export function useRouteCheck(path: string) {
     const router = useRouter();
-    const routeExists = router.hasRoute(path);
-    if (routeExists) {
-        try {
-            const resolved = router.resolve(path);
-            return resolved.name !== undefined && resolved.name !== '404';
-        } catch {
-            return false;
-        }
-    }
+    const allRoutes = router.getRoutes();
 
-    return false;
+    const lookup = allRoutes.find((route) => route.path === path);
+    if (lookup) {
+        return true;
+    } else return false;
 }
