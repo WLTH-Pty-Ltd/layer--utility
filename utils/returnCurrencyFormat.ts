@@ -1,7 +1,7 @@
 import { defu } from 'defu';
 
-export function returnCurrencyFormat(amount: Numberish, options?: Intl.NumberFormatOptions) {
-  if (!amount) return amount.toString();
+export function returnCurrencyFormat(amount?: string | number, options?: Intl.NumberFormatOptions) {
+  if (!amount) return
   const pattern = /^-?\d+(\.\d+)?$/;
   if (!pattern.test(amount.toString())) return amount;
 
