@@ -1,24 +1,33 @@
 declare global {
   export interface Countdown {
-    readonly now: number | Date | null;
-    readonly expiry: number | Date | null;
-    readonly days: number | string | null;
-    readonly hours: number | string | null;
-    readonly minutes: number | string | null;
-    readonly seconds: number | string | null;
+    start: number | Date;
+    expiry: number | Date;
+    days: number | string;
+    hours: number | string;
+    minutes: number | string;
+    seconds: number | string;
+    expired: boolean;
+    total: CountdownTotal;
   }
-  
+
+  export interface CountdownTotal {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  }
+
   export interface PasswordValidity {
-    readonly isValid: boolean;
-    readonly isValidLength: boolean;
-    readonly containsNumber: boolean;
-    readonly containsLowercase: boolean;
-    readonly containsUppercase: boolean;
-    readonly containsSymbol: boolean;
-    readonly containsIllegalWords: Array<IllegalWordCheck>;
-    readonly matchesChallenge: boolean;
+    isValid: boolean;
+    isValidLength: boolean;
+    containsNumber: boolean;
+    containsLowercase: boolean;
+    containsUppercase: boolean;
+    containsSymbol: boolean;
+    containsIllegalWords: Array<IllegalWordCheck>;
+    matchesChallenge: boolean;
   }
-  
+
   export interface IllegalWordCheck {
     check: string | undefined;
     value: string;
@@ -26,4 +35,4 @@ declare global {
   }
 }
 
-export {}
+export { }

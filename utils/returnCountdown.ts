@@ -1,21 +1,17 @@
-export interface Countdown {
-  now: number;
-  expiry: number;
-  expired: boolean;
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
-
-export function returnCountdown(expiry: string | number | Date) {
+export function returnCountdown(expiry: string | number | Date, start?: string | number | Date) {
   if (expiry === undefined) throw new Error("Expiry cannot be undefined");
 
   let countdown: Countdown;
 
-  const nowTime = new Date().getTime();
+  let startTime = new Date().getTime();
+
+  if (start) {
+    startTime = new Date(start).getTime();
+  }
+
   const expireTime = new Date(expiry).getTime();
-  let differenceInMilliseconds = Math.abs(expireTime - nowTime);
+  const originalDifferenceInMilliseconds = Math.abs(expireTime - startTime);
+  let differenceInMilliseconds = originalDifferenceInMilliseconds;
   let differenceInSeconds = Math.floor(differenceInMilliseconds / 1000);
   const differenceInDays = Math.floor(differenceInSeconds / 86400);
 
@@ -27,17 +23,25 @@ export function returnCountdown(expiry: string | number | Date) {
   const differenceInMinutes = Math.floor(differenceInSeconds / 60) % 60;
   differenceInSeconds -= differenceInMinutes % 60;
   differenceInSeconds = Math.floor(differenceInSeconds % 60);
-  differenceInMilliseconds = Math.round(
-    (differenceInSeconds - Math.floor(differenceInSeconds)) * 1000
-  );
+
+  const total: CountdownTotal = {
+    days: originalDifferenceInMilliseconds / (1000 * 60 * 60 * 24),
+    hours: originalDifferenceInMilliseconds / (1000 * 60 * 60),
+    minutes: originalDifferenceInMilliseconds / (1000 * 60),
+    seconds: originalDifferenceInMilliseconds / 1000
+  };
+
+
   countdown = {
-    now: nowTime,
+    start: startTime,
     expiry: expireTime,
-    expired: nowTime > expireTime,
+    expired: startTime > expireTime,
     days: differenceInDays,
     hours: differenceInHours,
     minutes: differenceInMinutes,
     seconds: differenceInSeconds,
+    total: total
   };
+
   return countdown;
 }
