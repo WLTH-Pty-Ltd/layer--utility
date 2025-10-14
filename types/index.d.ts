@@ -17,22 +17,12 @@ declare global {
     seconds: number;
   }
 
-  export interface PasswordValidity {
-    isValid: boolean;
-    isValidLength: boolean;
-    containsNumber: boolean;
-    containsLowercase: boolean;
-    containsUppercase: boolean;
-    containsSymbol: boolean;
-    containsIllegalWords: Array<IllegalWordCheck>;
-    matchesChallenge: boolean;
+  export interface DropDownOption {
+    id: string;
+    label: string;
+    emit: string;
   }
 
-  export interface IllegalWordCheck {
-    check: string | undefined;
-    value: string;
-    passes?: boolean;
-  }
 }
 
 export { }

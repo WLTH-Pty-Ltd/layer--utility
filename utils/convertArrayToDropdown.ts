@@ -1,9 +1,3 @@
-export interface DropDownOption {
-    id: string;
-    label: string;
-    emit: string;
-}
-
 export function convertArrayToDropdown(array: string[]) {
     const dropdown: DropDownOption[] = [];
     array.forEach((item) => {
