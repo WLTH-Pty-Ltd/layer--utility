@@ -7,5 +7,5 @@ export function returnCurrencyFormat(amount?: string | number, options?: Intl.Nu
 
   const mergedOptions: Intl.NumberFormatOptions = defu(options, { style: 'currency', currency: 'AUD' } as Intl.NumberFormatOptions)
 
-  return new Intl.NumberFormat("en-AU", mergedOptions).format(parseInt(amount.toString()));
+  return new Intl.NumberFormat("en-AU", mergedOptions).format(parseFloat(amount.toString()));
 }
