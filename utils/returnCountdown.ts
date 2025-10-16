@@ -21,7 +21,7 @@ export function returnCountdown(expiry: string | number | Date, start?: string |
   const differenceInHours = Math.floor(differenceInSeconds / 3600) % 24;
   differenceInSeconds -= differenceInHours * 3600;
   const differenceInMinutes = Math.floor(differenceInSeconds / 60) % 60;
-  differenceInSeconds -= differenceInMinutes % 60;
+  differenceInSeconds -= differenceInMinutes * 60;
   differenceInSeconds = Math.floor(differenceInSeconds % 60);
 
   const total: CountdownTotal = {
