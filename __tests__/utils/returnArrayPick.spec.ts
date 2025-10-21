@@ -19,9 +19,19 @@ describe("returnArrayPick", () => {
       expect(ids).toEqual([1, 2, 3]);
     });
 
-    it("should return an array of undefined for a non-existent key", () => {
+    it("should return an empty array if no items contain the key", () => {
       const nonExistent = returnArrayPick<undefined>(users, "z");
-      expect(nonExistent).toEqual([undefined, undefined, undefined]);
+      expect(nonExistent).toEqual([]);
+    });
+
+    it("should only return the items that contain the key", () => {
+      const staff = [
+        { id: 1, name: "Dan", email: "dan@wlth.com" },
+        { id: 2, name: "Ariel" },
+        { id: 3, name: "Drei", email: "drei@wlth.com" },
+      ];
+      const nonExistent = returnArrayPick<undefined>(staff, "email");
+      expect(nonExistent).toEqual(["dan@wlth.com", "drei@wlth.com"]);
     });
 
     it("should return an empty array when the array is empty", () => {

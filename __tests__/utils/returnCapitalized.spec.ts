@@ -19,4 +19,17 @@ describe("returnCapitalized", () => {
     capitalized = returnCapitalized("initial") as string;
     expect(capitalized).toBe("Initial");
   });
+
+  it("should handle multiple words", () => {
+    capitalized = returnCapitalized("kieran zykrl", true) as string;
+    expect(capitalized).toBe("Kieran Zykrl");
+
+    capitalized = returnCapitalized("andrei duero jr.", true) as string;
+    expect(capitalized).toBe("Andrei Duero Jr.");
+
+    capitalized = returnCapitalized(
+      "the quick brown dog jumps over the lazy fox"
+    ) as string;
+    expect(capitalized).toBe("The quick brown dog jumps over the lazy fox");
+  });
 });
