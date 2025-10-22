@@ -21,10 +21,10 @@ describe("returnCapitalized", () => {
   });
 
   it("should handle multiple words", () => {
-    capitalized = returnCapitalized("kieran zykrl", true) as string;
+    capitalized = returnCapitalized("kieran zykrl", false) as string;
     expect(capitalized).toBe("Kieran Zykrl");
 
-    capitalized = returnCapitalized("andrei duero jr.", true) as string;
+    capitalized = returnCapitalized("andrei duero jr.", false) as string;
     expect(capitalized).toBe("Andrei Duero Jr.");
 
     capitalized = returnCapitalized(

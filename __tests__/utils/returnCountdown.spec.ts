@@ -9,6 +9,16 @@ describe("returnCountdown", () => {
     );
   });
 
+  it("should throw an error if passed date's format is invalid", () => {
+    expect(() => returnCountdown("15/10/2025")).toThrowError(
+      "Invalid expiry date time format"
+    );
+
+    expect(() => returnCountdown("10/10/2025", "15/10/2025")).toThrowError(
+      "Invalid start date time format"
+    );
+  });
+
   it("should calculate countdown based on the expiry and start dates", () => {
     const start = "2025-10-10T00:00:00Z";
     const expiry = "2025-10-12T03:30:45Z";
@@ -68,5 +78,19 @@ describe("returnCountdown", () => {
     expect(result.total.hours).toBe(24);
     expect(result.total.minutes).toBe(1440);
     expect(result.total.seconds).toBe(86400);
+  });
+
+  it("should handle numeric timestamps returned by Date.now()", () => {
+    const start = Date.now();
+    const duration = 1000 * 60 * 60 * 5; // 5 hours
+    const expiry = start + duration;
+
+    const result = returnCountdown(expiry, start);
+
+    expect(result.days).toBe(0);
+    expect(result.hours).toBe(5);
+    expect(result.minutes).toBe(0);
+    expect(result.seconds).toBe(0);
+    expect(result.expired).toBe(false);
   });
 });

@@ -1,11 +1,15 @@
 export function returnCountdown(expiry: string | number | Date, start?: string | number | Date) {
   if (expiry === undefined) throw new Error("Expiry cannot be undefined");
 
+  if (typeof expiry === "string" && isDateStringInvalid(expiry))
+    throw new Error("Invalid expiry date time format");
+
   let countdown: Countdown;
 
   let startTime = new Date().getTime();
 
   if (start) {
+    if (typeof start === "string" && isDateStringInvalid(start)) throw new Error("Invalid start date time format");
     startTime = new Date(start).getTime();
   }
 
@@ -31,7 +35,6 @@ export function returnCountdown(expiry: string | number | Date, start?: string |
     seconds: originalDifferenceInMilliseconds / 1000
   };
 
-
   countdown = {
     start: startTime,
     expiry: expireTime,
@@ -44,4 +47,13 @@ export function returnCountdown(expiry: string | number | Date, start?: string |
   };
 
   return countdown;
+}
+
+function isDateStringInvalid(dateString: string): boolean {
+  try {
+    const dateTime = new Date(dateString).getTime();
+    return dateTime ? false : true;
+  } catch (err) {
+    return true;
+  }
 }
