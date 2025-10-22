@@ -1,7 +1,8 @@
 import { returnCapitalized } from "./returnCapitalized";
 
 export function returnPluralized(text: string, count: number, capitalized = false) {
-  const specialWords = { I: "we", my: "our", me: "us" };
+  if ((text || "").trim().length === 0) return "";
+  const specialWords = { i: "we", I: "we", my: "our", me: "us" };
   const word =
     (count || 0) === 1
       ? text
