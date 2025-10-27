@@ -32,4 +32,9 @@ describe("returnCapitalized", () => {
     ) as string;
     expect(capitalized).toBe("The quick brown dog jumps over the lazy fox");
   });
+
+  it('It should always capitalise reserved words', () => {
+    const result = returnCapitalized('wlth');
+    expect(result).toBe('WLTH');
+  });
 });

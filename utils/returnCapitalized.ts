@@ -1,3 +1,5 @@
+import { CONSTANTS } from "./constants";
+
 export function returnCapitalized(
   word: string | undefined,
   ignoreWordsSeparator: boolean = true
@@ -12,6 +14,8 @@ export function returnCapitalized(
 
     if (words.length > 1) {
       const capitalizedWords = words.map((w: string) => {
+        console.log(w);
+        if (CONSTANTS.capitalisedWords.includes(w)) return w.toUpperCase();
         if (w) return w.charAt(0).toUpperCase() + w.slice(1);
         else return "";
       });
