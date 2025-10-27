@@ -33,8 +33,19 @@ describe("returnCapitalized", () => {
     expect(capitalized).toBe("The quick brown dog jumps over the lazy fox");
   });
 
-  it('It should always capitalise reserved words', () => {
-    const result = returnCapitalized('wlth');
-    expect(result).toBe('WLTH');
+  it('It should always capitalise reserved words in a sentence', () => {
+    capitalized = returnCapitalized('a wlth rate card', false) as string;
+    expect(capitalized).toBe('A WLTH Rate Card');
   });
+
+  it('It should always capitalise reserved words in a single word', () => {
+    capitalized = returnCapitalized('smsf') as string;
+    expect(capitalized).toBe('SMSF');
+  });
+
+  it('It should always capitalise reserved words with mixed casing', () => {
+    capitalized = returnCapitalized('Smsf') as string;
+    expect(capitalized).toBe('SMSF');
+  });
+
 });

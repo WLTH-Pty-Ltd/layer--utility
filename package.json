@@ -20,7 +20,7 @@
     "@vueuse/nuxt": "^13.3.0",
     "eslint": "^9.28.0",
     "happy-dom": "^18.0.1",
-    "nuxt": "^3.17.5",
+    "nuxt": "^4.2.0",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4",
     "vue": "latest"
