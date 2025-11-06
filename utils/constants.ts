@@ -1,3 +1,3 @@
 export const CONSTANTS = {
-    capitalisedWords: ['WLTH', 'SMSF'],
+    capitalisedWords: ['WLTH', 'SMSF', 'NDIS'],
 }
