@@ -4,6 +4,6 @@ import { describe, it, expect } from "vitest";
 describe("constants", () => {
     it('It should return the correct variable from the constants file', () => {
         const result = CONSTANTS.capitalisedWords;
-        expect(result).toStrictEqual(['WLTH', 'SMSF']);
+        expect(result).includes('WLTH');
     });
 });

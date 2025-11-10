@@ -1,7 +1,7 @@
-import { logDevWarning } from "../../utils/logDevWarning";
+import { returnDevWarning } from "../../utils/returnDevWarning";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
-describe("logDevWarning", () => {
+describe("returnDevWarning", () => {
     let consoleLogSpy: ReturnType<typeof vi.spyOn>;
     let consoleInfoSpy: ReturnType<typeof vi.spyOn>;
     let consoleWarnSpy: ReturnType<typeof vi.spyOn>;
@@ -23,7 +23,7 @@ describe("logDevWarning", () => {
 
     it("should call console.log with message when no type is specified", () => {
         const message = "Test warning message";
-        logDevWarning(message);
+        returnDevWarning(message);
 
         if (import.meta.dev) {
             expect(consoleLogSpy).toHaveBeenCalledWith(message);
@@ -33,7 +33,7 @@ describe("logDevWarning", () => {
 
     it("should call console.info with message when type is 'info'", () => {
         const message = "Test info message";
-        logDevWarning(message, "info");
+        returnDevWarning(message, "info");
 
         if (import.meta.dev) {
             expect(consoleInfoSpy).toHaveBeenCalledWith(message);
@@ -44,7 +44,7 @@ describe("logDevWarning", () => {
 
     it("should call console.warn with message when type is 'warn'", () => {
         const message = "Test warn message";
-        logDevWarning(message, "warn");
+        returnDevWarning(message, "warn");
 
         if (import.meta.dev) {
             expect(consoleWarnSpy).toHaveBeenCalledWith(message);
@@ -55,7 +55,7 @@ describe("logDevWarning", () => {
 
     it("should call console.error with message when type is 'error'", () => {
         const message = "Test error message";
-        logDevWarning(message, "error");
+        returnDevWarning(message, "error");
 
         if (import.meta.dev) {
             expect(consoleErrorSpy).toHaveBeenCalledWith(message);

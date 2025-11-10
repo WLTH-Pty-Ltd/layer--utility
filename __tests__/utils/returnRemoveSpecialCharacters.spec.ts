@@ -37,4 +37,16 @@ describe("returnRemoveSpecialCharacters", () => {
     const result = returnRemoveSpecialCharacters(input);
     expect(result).toBe("abc123");
   });
+
+  it("should replace the special characters with a specified character", () => {
+    const input = "about-us";
+    const result = returnRemoveSpecialCharacters(input, ' ');
+    expect(result).toBe("about us")
+  });
+
+  it("should replace the special characters with a special character if requested", () => {
+    const input = "about-us";
+    const result = returnRemoveSpecialCharacters(input, '_');
+    expect(result).toBe("about_us")
+  });
 });
