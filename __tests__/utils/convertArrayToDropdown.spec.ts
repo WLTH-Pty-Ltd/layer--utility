@@ -3,9 +3,11 @@ import { describe, it, expect, vi } from "vitest";
 
 describe("convertArrayToDropdown", () => {
   it("should convert string array into dropdown options", () => {
-    vi.spyOn(global.crypto, "randomUUID").mockReturnValue(
-      "0000-0000-0046-0000-0000"
-    );
+    const originalCrypto = globalThis.crypto;
+    globalThis.crypto = {
+      ...globalThis.crypto,
+      randomUUID: vi.fn().mockReturnValue("0000-0000-0046-0000-0000"),
+    };
 
     const inputArray = ["Forms", "Documents", "Tools", "Calculators"];
 
@@ -23,7 +25,7 @@ describe("convertArrayToDropdown", () => {
   });
 
   it("should return an empty array when input is empty", () => {
-    const mockUUID = vi.spyOn(global.crypto, "randomUUID");
+    const mockUUID = vi.spyOn(globalThis.crypto, "randomUUID");
     const result = convertArrayToDropdown([]);
     expect(result).toEqual([]);
     expect(mockUUID).not.toHaveBeenCalled();
@@ -36,7 +38,7 @@ describe("convertArrayToDropdown", () => {
       "0000-0000-0046-0000-0003",
     ];
     const mockUUID = vi
-      .spyOn(global.crypto, "randomUUID")
+      .spyOn(globalThis.crypto, "randomUUID")
       // @ts-ignore
       .mockImplementation(() => uuids.shift());
 
