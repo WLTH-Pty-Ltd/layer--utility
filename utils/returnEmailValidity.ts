@@ -1,4 +1,4 @@
-export function returnEmailValidity(email: string) {
+export function returnEmailValidity(email?: string) {
   return !!String(email)
     .toLowerCase()
     .match(
