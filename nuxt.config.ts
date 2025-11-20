@@ -2,4 +2,12 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@vueuse/nuxt"],
+  runtimeConfig: {
+    name: 'layer--utility',
+    version: {
+      version: 'v1.0.0',
+      fatal: false,
+      breakingChanges: true,
+    }
+  }
 })
