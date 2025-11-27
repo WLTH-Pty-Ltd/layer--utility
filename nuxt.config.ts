@@ -5,8 +5,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     name: 'layer--utility',
     version: {
-      version: 'v1.0.0',
-      fatal: false,
+      version: 'v2.0.0',
+      fatal: true,
       breakingChanges: true,
     }
   }
