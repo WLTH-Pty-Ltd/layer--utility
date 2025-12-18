@@ -1,24 +1,31 @@
-export function returnDevWarning(msg: string, type?: 'info' | 'warn' | 'error') {
+export function returnDevWarning(msg: string, type?: 'info' | 'warn' | 'error' | 'time' | 'timeStamp' | 'timeLog' | 'timeEnd') {
+    if (!import.meta.dev) return;
+    console.group('🔧 Dev only warning');
     switch (type) {
         case 'info':
-            if (import.meta.dev) {
-                console.info(msg);
-            }
-            return;
+            console.info(msg);
+            break;
         case 'warn':
-            if (import.meta.dev) {
-                console.warn(msg);
-            }
-            return;
+            console.warn(msg);
+            break;
         case 'error':
-            if (import.meta.dev) {
-                console.error(msg);
-            }
-            return;
+            console.error(msg);
+            break;
+        case 'time':
+            console.time(msg);
+            break;
+        case 'timeStamp':
+            console.timeStamp(msg);
+            break;
+        case 'timeLog':
+            console.timeLog(msg);
+            break;
+        case 'timeEnd':
+            console.timeEnd(msg);
+            break;
         default:
-            if (import.meta.dev) {
-                console.log(msg);
-            }
-            return;
+            console.log(msg);
     }
+    console.groupEnd();
+    return;
 }
