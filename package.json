@@ -1,7 +1,7 @@
 {
-  "name": "my-nuxt-layer",
+  "name": "layer--utility",
   "type": "module",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "./nuxt.config.ts",
   "scripts": {
     "dev": "nuxi dev .playground",
@@ -15,14 +15,14 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "latest",
-    "@nuxt/test-utils": "^3.19.2",
+    "@nuxt/test-utils": "^3.20.1",
     "@vue/test-utils": "^2.4.6",
     "@vueuse/nuxt": "^13.3.0",
     "eslint": "^9.28.0",
-    "happy-dom": "^18.0.1",
+    "happy-dom": "^20.0.10",
     "nuxt": "^4.2.0",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.4",
+    "vitest": "^3.2.0",
     "vue": "latest"
   }
 }
