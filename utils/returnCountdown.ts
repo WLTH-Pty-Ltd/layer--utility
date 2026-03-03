@@ -4,8 +4,6 @@ export function returnCountdown(expiry: string | number | Date, start?: string |
   if (typeof expiry === "string" && isDateStringInvalid(expiry))
     throw new Error("Invalid expiry date time format");
 
-  let countdown: Countdown;
-
   let startTime = new Date().getTime();
 
   if (start) {
@@ -15,7 +13,7 @@ export function returnCountdown(expiry: string | number | Date, start?: string |
 
   const expireTime = new Date(expiry).getTime();
   const originalDifferenceInMilliseconds = Math.abs(expireTime - startTime);
-  let differenceInMilliseconds = originalDifferenceInMilliseconds;
+  const differenceInMilliseconds = originalDifferenceInMilliseconds;
   let differenceInSeconds = Math.floor(differenceInMilliseconds / 1000);
   const differenceInDays = Math.floor(differenceInSeconds / 86400);
 
@@ -35,7 +33,7 @@ export function returnCountdown(expiry: string | number | Date, start?: string |
     seconds: originalDifferenceInMilliseconds / 1000
   };
 
-  countdown = {
+  const countdown = {
     start: startTime,
     expiry: expireTime,
     expired: startTime > expireTime,
@@ -44,16 +42,12 @@ export function returnCountdown(expiry: string | number | Date, start?: string |
     minutes: differenceInMinutes,
     seconds: differenceInSeconds,
     total: total
-  };
+  } as Countdown;
 
   return countdown;
 }
 
 function isDateStringInvalid(dateString: string): boolean {
-  try {
-    const dateTime = new Date(dateString).getTime();
-    return dateTime ? false : true;
-  } catch (err) {
-    return true;
-  }
+  const dateTime = new Date(dateString).getTime();
+  return dateTime ? false : true;
 }
